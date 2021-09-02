@@ -30,4 +30,8 @@
 	4) 삭제
 	5) 수정
 	
+4. 순서
+1)DTO,DAO,MAPPER, TEST CASE 테스트수행
+2)Service, controller, jsp 연결
+	
 	
