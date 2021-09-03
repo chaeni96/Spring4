@@ -10,7 +10,8 @@
   	</select>
   
 	<select id="getSelect" parameterType="com.iu.c4.notice.NoticeDTO" resultType="com.iu.c4.notice.NoticeDTO">
-		SELECT * FROM NOTICE WHERE num = ${num}
+		SELECT * FROM NOTICE WHERE NUM = ${num}
+	
 	</select>
   
   </mapper>

@@ -25,8 +25,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("select")
-	public void select(NoticeDTO noticeDTO, Model model) {
+	public String select(NoticeDTO noticeDTO, Model model) {
 		noticeDTO = noticeService.getSelect(noticeDTO);
 		model.addAttribute("dto", noticeDTO);
+		return "board/select";
 	}
 }

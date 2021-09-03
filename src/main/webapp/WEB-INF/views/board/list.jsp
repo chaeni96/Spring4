@@ -33,11 +33,7 @@
 				</c:forEach>
 			</table>
 		
-		
-		
 		</div>
-	
-	
 	
 	</div>
 
