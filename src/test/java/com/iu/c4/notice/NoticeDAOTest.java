@@ -1,5 +1,6 @@
 package com.iu.c4.notice;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -34,7 +35,11 @@ public class NoticeDAOTest extends MyJunitTest{
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setTitle("ch");
 		noticeDTO.setContents("contents");
-		noticeDTO.set
+		noticeDTO.setWriter("c");
+		noticeDTO.setHits(150L);
+		
+		int result = noticeDAO.setInsert(noticeDTO);
+		assertEquals(1, result);
 	}
 
 }
