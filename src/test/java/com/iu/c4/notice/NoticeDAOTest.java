@@ -15,21 +15,26 @@ public class NoticeDAOTest extends MyJunitTest{
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-	@Test
+	//@Test
 	public void getListTest() {
 		List<NoticeDTO> ar = noticeDAO.getList();
 		
 		assertNotEquals(0, ar.size());
 	}
 	
-	@Test
+	//@Test
 	public void getSelectTest() {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNum(1);
 		noticeDTO = noticeDAO.getSelect(noticeDTO);
-		assertNotNull(noticeDTO);
-		
-		
+		assertNotNull(noticeDTO);	
+	}
+	
+	public void setInsertTest() {
+		NoticeDTO noticeDTO = new NoticeDTO();
+		noticeDTO.setTitle("ch");
+		noticeDTO.setContents("contents");
+		noticeDTO.set
 	}
 
 }
