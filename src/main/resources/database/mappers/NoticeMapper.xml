@@ -14,7 +14,7 @@
 	
 	</select>
   
-  	<select id="setInsert" parameterType="com.iu.c4.notice.NoticeDTO" resultType="com.iu.c4.notice.NoticeDTO" >
-  	  INSERT INTO NOTICE(num, title, contents, writer ,hits) VALUES(notice_seq.nextval,#{title},#{contents},#{writer}, #{hits})
+  	<select id="setInsert" parameterType="com.iu.c4.notice.NoticeDTO" >
+  	  INSERT INTO NOTICE(num, title, contents, writer, date, hits) VALUES(notice_seq.nextval,#{title},#{contents},#{writer}, sysdate, 0)
   	</select>
   </mapper>
