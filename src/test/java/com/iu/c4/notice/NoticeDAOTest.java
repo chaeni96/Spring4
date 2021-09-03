@@ -31,6 +31,7 @@ public class NoticeDAOTest extends MyJunitTest{
 		assertNotNull(noticeDTO);	
 	}
 	
+	@Test
 	public void setInsertTest() {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setTitle("ch");
