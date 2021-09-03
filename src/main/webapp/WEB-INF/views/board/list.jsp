@@ -14,8 +14,8 @@
 	
 	<div class="container-fluid">
 		<div class="col-md-9 my-2 mx-auto">
-			<table class="table table-secondary table-hover">
-				<tr>
+			<table class="table table-hover">
+				<tr class="table table-dark">
 					<th>번호</th><th>제목</th><th>내용</th><th>작성자</th><th>작성일</th><th>조회수</th>
 				</tr>
 				
