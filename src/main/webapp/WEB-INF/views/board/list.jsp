@@ -33,6 +33,15 @@
 				</c:forEach>
 			</table>
 		
+			<!-- 게시글 작성 jsp이동  -->	
+			<a href="./insert" class="btn btn-danger" >ADD</a><br>
+		
+			<!-- pager -->
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="n">
+				<a href="./list?pn=${n}">${n}</a>
+			</c:forEach>
+			
+			
 		</div>
 	
 	</div>

@@ -5,16 +5,30 @@
   
   <mapper namespace="com.iu.c4.notice.NoticeDAO">
   
+  	<!-- 목록불러오기 쿼리문 -->
   	<select id="getList" resultType="com.iu.c4.notice.NoticeDTO">
   		SELECT * FROM NOTICE
   	</select>
   
+  	<!-- 세부사항 선택 쿼리문 -->
 	<select id="getSelect" parameterType="com.iu.c4.notice.NoticeDTO" resultType="com.iu.c4.notice.NoticeDTO">
 		SELECT * FROM NOTICE WHERE NUM = #{num}
 	
 	</select>
   
+  	<!-- 내용 생성 쿼리문 -->
   	<select id="setInsert" parameterType="com.iu.c4.notice.NoticeDTO" >
   	  INSERT INTO NOTICE(num, title, contents, writer, date, hits) VALUES(notice_seq.nextval,#{title},#{contents},#{writer}, sysdate, 0)
   	</select>
+  	
+  	<!-- 내용삭제 쿼리문 -->
+  	<delete id="setDelete" parameterType="com.iu.c4.notice.NoticeDTO">
+  		DELETE NOTICE WHERE NUM= #{num}
+  	 </delete>
+  	 
+  	 <!-- 내용수정 쿼리문 -->
+  	 
+  	 <update id="setUpdate" parameterType="com.iu.c4.notice.NoticeDTO" >
+  		UPDATE NOTICE SET TITLE=#{title}, CONTENTS=#{contents}, WRITER=#{writer} WHERE NUM=#{num}
+  	</update>
   </mapper>

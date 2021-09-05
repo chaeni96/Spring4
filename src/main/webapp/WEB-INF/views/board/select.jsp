@@ -19,7 +19,10 @@
 		<h3>WRITE : ${dto.writer}</h3>
 		<h3>REGDATE : ${dto.regDate}</h3>
 		<h3>HITS : ${dto.hits}</h3>
-	
+		
+		<!-- 게시글 삭제 page 이동 -->
+		<a href="./delete?num=${dto.num}" class="btn btn-danger">Delete</a>
+		<a href="./update?num=${dto.num}" class="btn btn-primary">Update</a>
 	</div>
 
 
