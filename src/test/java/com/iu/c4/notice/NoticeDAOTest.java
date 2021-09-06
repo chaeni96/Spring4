@@ -5,9 +5,11 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
+import java.util.Random;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
 
 import com.iu.c4.MyJunitTest;
 import com.iu.c4.util.Pager;
@@ -20,9 +22,10 @@ public class NoticeDAOTest extends MyJunitTest{
 	//@Test
 	public void getListTest(Pager pager) {
 		List<NoticeDTO> ar = noticeDAO.getList(pager);
-		
 		assertNotEquals(0, ar.size());
-	}
+		}
+		
+		
 	
 	//@Test
 	public void getSelectTest() {
@@ -32,16 +35,20 @@ public class NoticeDAOTest extends MyJunitTest{
 		assertNotNull(noticeDTO);	
 	}
 	
-	//@Test
-	public void setInsertTest() {
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setTitle("ch");
-		noticeDTO.setContents("contents");
-		noticeDTO.setWriter("c");
-		noticeDTO.setHits(150L);
-		
-		int result = noticeDAO.setInsert(noticeDTO);
-		assertEquals(1, result);
+	@Test
+	public void setInsertTest() throws Exception {
+
+		for(int i = 0; i<200; i++) {
+			NoticeDTO noticeDTO = new NoticeDTO();
+			noticeDTO.setTitle("Title"+i);
+			noticeDTO.setContents("Contents"+i);
+			noticeDTO.setWriter("Writer"+i);
+			int result = noticeDAO.setInsert(noticeDTO);
+			
+			if(i%10==0) {
+				Thread.sleep(500);
+				}
+		}
 	}
 	
 	//@Test

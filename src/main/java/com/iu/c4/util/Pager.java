@@ -25,7 +25,7 @@ public class Pager {
 	
 	public void makeNum() {
 		//1. 총 개수
-		Long totalCount = 211L;
+		Long totalCount = 202L;
 		
 		//2. 페이지 개수 구하기  ex)10
 		Long totalPage = totalCount/this.getPerPage();

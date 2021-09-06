@@ -6,8 +6,14 @@
   <mapper namespace="com.iu.c4.notice.NoticeDAO">
   
   	<!-- 목록불러오기 쿼리문 -->
-  	<select id="getList" resultType="com.iu.c4.notice.NoticeDTO">
-  		SELECT * FROM NOTICE
+  	<select id="getList" parameterType="com.iu.c4.notice.util.Pager" resultType="com.iu.c4.notice.NoticeDTO" >
+ 		SELECT * FROM
+  		(SELECT ROWNUM R, N.* FROM
+  		 (SELECT * FROM NOTICE 
+   		ORDER BY NUM DESC) 
+   		N)
+   	 WHERE R BETWEEN #{startRow} AND #{lastRow} 
+  
   	</select>
   
   	<!-- 세부사항 선택 쿼리문 -->
