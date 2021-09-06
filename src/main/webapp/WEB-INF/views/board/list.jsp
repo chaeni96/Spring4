@@ -1,50 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <c:import url="../temp/boot_head.jsp"></c:import>
-<title>Notice List</title>
+<title>Insert title here</title>
 </head>
 <body>
-<c:import url="../temp/boot_nav.jsp"></c:import>
-
-	<h1>Notice list</h1>
+<c:import url="../temp/boot_nav.jsp"></c:import>	
 	
+	<h1>${board} Board List Page</h1>
 	<div class="container-fluid">
 		<div class="col-md-9 my-2 mx-auto">
 			<table class="table table-hover">
 				<tr class="table table-dark">
-					<th>번호</th><th>제목</th><th>내용</th><th>작성자</th><th>작성일</th><th>조회수</th>
+					<th>번호</th>
+					<th>제목</th>
+					<th>내용</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th>조회수</th>
 				</tr>
 				
 				<c:forEach items="${list}" var="dto">
 					<tr>
-					<td>${dto.num}</td>
+					<th scope="row">${dto.num}</th>
 					<td><a href="./select?num=${dto.num}">${dto.title}</a></td>
 					<td>${dto.contents}</td>
 					<td>${dto.writer}</td>
 					<td>${dto.regDate}</td>
 					<td>${dto.hits}</td>
 					</tr>
-				
-				
 				</c:forEach>
 			</table>
-		
-			<!-- 게시글 작성 jsp이동  -->	
-			<a href="./insert" class="btn btn-danger" >ADD</a><br>
-		
-			<!-- pager -->
-			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="n">
-				<a href="./list?pn=${n}">${n}</a>
-			</c:forEach>
 			
+			<!-- pageing -->
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination">
+			    <li class="page-item">
+			      <a class="page-link" href="./list?kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    
+			    <li class="page-item">
+			      <a class="page-link" href="./list?pn=${pager.startNum-1}&kind=${pager.kind }&search=${pager.search}" aria-label="Previous">
+			        <span aria-hidden="true">&lt;</span>
+			      </a>
+			    </li>
+			    
+			    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="n">
+			    	<li class="page-item"><a class="page-link" href="./list?pn=${n}&kind=${pager.kind}&search=${pager.search}">${n}</a></li>
+				</c:forEach>
+			    
+			       <li class="page-item">
+			      <a class="page-link" href="./list?pn=${pager.lastNum+1}&kind=${pager.kind }&search=${pager.search}" aria-label="Next">
+			        <span aria-hidden="true">&gt;</span>
+			      </a>
+			    </li>
+			    
+			    <li class="page-item">
+			      <a class="page-link" href="./list?pn=${pager.totalPage}&kind=${pager.kind }&search=${pager.search}" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
 			
-		</div>
 	
-	</div>
-
 </body>
 </html>
