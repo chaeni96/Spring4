@@ -6,7 +6,7 @@
   <mapper namespace="com.iu.c4.notice.NoticeDAO">
   
   	<!-- 목록불러오기 쿼리문 -->
-  	<select id="getList" parameterType="com.iu.c4.notice.util.Pager" resultType="com.iu.c4.notice.NoticeDTO" >
+  	<select id="getList" parameterType="com.iu.c4.util.Pager" resultType="com.iu.c4.notice.NoticeDTO" >
  		SELECT * FROM
   		(SELECT ROWNUM R, N.* FROM
   		 (SELECT * FROM NOTICE 
@@ -24,7 +24,7 @@
   
   	<!-- 내용 생성 쿼리문 -->
   	<select id="setInsert" parameterType="com.iu.c4.notice.NoticeDTO" >
-  	  INSERT INTO NOTICE(num, title, contents, writer, date, hits) VALUES(notice_seq.nextval,#{title},#{contents},#{writer}, sysdate, 0)
+  	  INSERT INTO NOTICE(num, title, contents, writer, date, hits) VALUES(notice_seq.nextval, #{title}, #{contents}, #{writer}, sysdate, 0)
   	</select>
   	
   	<!-- 내용삭제 쿼리문 -->

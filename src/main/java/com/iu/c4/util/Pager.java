@@ -27,10 +27,9 @@ public class Pager {
 		//1. 총 개수
 		Long totalCount = 202L;
 		
-		//2. 페이지 개수 구하기  ex)10
+		//2. 페이지 개수 구하기  
 		Long totalPage = totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage() !=0) {
-			//totalPage = totalPage+1;
 			totalPage++;
 			
 		//3. totalBlock 구하기

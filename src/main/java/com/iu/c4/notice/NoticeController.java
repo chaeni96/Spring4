@@ -22,8 +22,8 @@ public class NoticeController {
 	@RequestMapping("list")
 	public ModelAndView list(ModelAndView mv, Pager pager) {
 		List<NoticeDTO> ar = noticeService.getList(pager);
-		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
+		mv.addObject("list", ar);
 		mv.setViewName("board/list");
 		
 		return mv;
