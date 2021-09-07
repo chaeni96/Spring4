@@ -10,9 +10,27 @@
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>	
 	
-	<h1>${board} Board List Page</h1>
+	<h1>${board} List Page</h1>
+	
 	<div class="container-fluid">
-		<div class="col-md-9 my-2 mx-auto">
+	<div class="col-md-9 my-2 mx-auto">
+	<!-- Search Form -->	
+		<form action="./list" method="get">
+		
+		 <div class="input-group mb-3" >
+		  <select name="kind" class="form-select form-select-sm" aria-label=".form-select-sm example">
+			  <option value="k1">Title</option>
+			  <option value="k2">Contents</option>
+			  <option value="k3">Writer</option>
+		  </select>
+		  
+		  <input type="text" name="search" class="form-control" aria-label="Text input with dropdown button">
+		  <button type="submit" class="btn btn-outline-secondary">Search</button>
+		</div>
+			
+		</form>
+
+		<!-- list table -->
 			<table class="table table-hover">
 				<tr class="table table-dark">
 					<th>번호</th>
@@ -26,7 +44,13 @@
 				<c:forEach items="${list}" var="dto">
 					<tr>
 					<th scope="row">${dto.num}</th>
-					<td><a href="./select?num=${dto.num}">${dto.title}</a></td>
+					<td><a href="./select?num=${dto.num}">
+						<c:catch>
+							<c:forEach begin="1" end="${dto.depth}">
+								--
+							</c:forEach>
+						</c:catch>
+					${dto.title}</a></td>
 					<td>${dto.contents}</td>
 					<td>${dto.writer}</td>
 					<td>${dto.regDate}</td>
@@ -34,6 +58,7 @@
 					</tr>
 				</c:forEach>
 			</table>
+				
 			
 			<!-- pageing -->
 			<nav aria-label="Page navigation example">
@@ -68,6 +93,9 @@
 			  </ul>
 			</nav>
 			
-	
+		<a href="./insert" class="btn btn-secondary">ADD</a>		
+		
+		</div>
+	</div>
 </body>
 </html>

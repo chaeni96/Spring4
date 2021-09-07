@@ -14,31 +14,31 @@ import com.iu.c4.util.Pager;
 public class NoticeDAO implements BoardDAO {
 
 	@Autowired
-	private SqlSession SqlSession;
+	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.c4.board.notice.NoticeDAO.";
 	
 	@Override
 	public Long getCount(Pager pager) throws Exception{
 
-		return SqlSession.selectOne(NAMESPACE+"getCount", pager);
+		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 
-		return SqlSession.selectList(NAMESPACE+"getList", pager);
+		return sqlSession.selectList(NAMESPACE+"getList", pager);
 	}
 
 	@Override
 	public BoardDTO getSelect(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+		return sqlSession.selectOne(NAMESPACE+"getSelect", boardDTO);
 	}
 
 	@Override
 	public int setInsert(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.insert(NAMESPACE+"setInsert", boardDTO);
 	}
 
 	@Override
