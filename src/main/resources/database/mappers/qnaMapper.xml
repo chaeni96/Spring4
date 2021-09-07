@@ -58,6 +58,11 @@
 		SELECT * FROM QNA WHERE NUM = #{num}
 	</select>
  	
+ 	<update id="setHitsUpdate" parameterType="BoardDTO">
+ 		UPDATE QNA SET HITS = HITS+1 WHERE NUM=#{num}
+ 	</update>	
+ 	
+ 	
  	<select id="setInsert" parameterType="BoardDTO" >
   	  INSERT INTO QNA(num, title, contents, writer, regDate, hits, ref, step, depth) 
   	  VALUES(qna_seq.nextval,#{title},#{contents},#{writer}, SYSDATE, 0, qna_seq.currval, 0, 0)
@@ -73,7 +78,6 @@
  		VALUES(qna_seq.nextval, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{ref}, #{step}, #{depth})
  	
  	</insert>
- 	
  	
  	
   </mapper>

@@ -44,6 +44,13 @@ public class QnaDAO implements BoardDAO {
 	}
 
 	@Override
+	public int setHitsUpdate(BoardDTO boardDTO) throws Exception {
+
+		return sqlSession.update(NAMESAPCE+"setHitsUpdate", boardDTO);
+	}
+
+	
+	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;

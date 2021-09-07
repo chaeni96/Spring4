@@ -25,7 +25,7 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public BoardDTO getSelect(BoardDTO boardDTO) throws Exception {
-
+		noticeDAO.setHitsUpdate(boardDTO);
 		return noticeDAO.getSelect(boardDTO);
 	}
 
