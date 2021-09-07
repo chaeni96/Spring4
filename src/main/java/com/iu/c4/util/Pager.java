@@ -172,6 +172,4 @@ public class Pager {
 		this.totalPage = totalPage;
 	}
 
-	
-	
 }
