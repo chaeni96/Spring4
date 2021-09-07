@@ -30,11 +30,11 @@ public class NoticeController {
 	public ModelAndView getList(Pager pager) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/list");
-		
 		List<BoardDTO> ar = noticeService.getList(pager);
 		mv.addObject("pager", pager);
 		mv.addObject("list", ar);
+		mv.setViewName("board/list");
+		
 		return mv;
 	}
 	
