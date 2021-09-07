@@ -2,128 +2,176 @@ package com.iu.c4.util;
 
 public class Pager {
 	
-	private Long pn; //현재 page
-	private Long perPage; //page당 보여지는 개수
-	private Long startRow; //게시글의 시작번호
-	private Long lastRow; //게시글의 끝번호
-	private Long startNum; 
+	//현재 보는 페이지의 번호
+	private Long pn;
+
+	//한페이지에 출력할 글의 개수(한 페이지에서 보이는) 
+	private Long perPage;
+	
+	//한페이지에 출력할 pn의 개수(한 페이지에 보이는) 
+	private Long perBlock;
+	
+	//-------------- RowNum Mapper에서 사용----------
+	
+	private Long startRow;
+	private Long lastRow;
+	
+	//------------- startNum, lastNum(jsp 번호 출력때 사용)
+
+	private Long startNum;
 	private Long lastNum;
 	
-	private Long totalPage; //page의 총 개수
+	private Long totalBlock;
+	private Long totalPage;
 	
+	//------------ 검색 ---------------
 	private String kind;
 	private String search;
 	
-	//선택한 페이지에서 보이는 게시글의 시작번호, 끝번호 
+	//--------- rowNum 계산 ---------------
+	
 	public void makeRow() {
-		this.startRow = (this.getPerPage()-1)*this.getPerPage()+1;
+		this.startRow = (this.getPn()-1)*this.getPerPage()+1;
 		this.lastRow = this.getPn()*this.getPerPage();
 	}
-	
-	
+
 	public void makeNum(Long totalCount) {
-		
-		//page 개수 구하기
-		totalPage = totalCount/this.getPerPage(); //totalCount=table의 총개수
-		if(totalCount%this.getPerPage() != 0) {
+		//1. totalCount : 전체 글의 개수 (매개변수로 받아옴)
+		//2. totalCount 로 totalPage 계산 : 전체 페이지 개수
+		totalPage = totalCount/this.getPerPage();
+		if(totalCount%this.getPerPage() != 0 ) {
 			totalPage++;
 		}
-			
-		//totalBlock 구하기
-			Long totalBlock = totalPage/5;
-			if(totalPage%5 !=0) {
-				totalBlock++;
-			}
-			
-		//pn으로 curBlock 구하기
 		
-		Long curBlock = this.getPn()/5;
-		if(this.getPn()%5 !=0) {
+		//3. totalPage로 totalBlock 계산
+		totalBlock = totalPage/this.getPerBlock();
+		if(totalPage%this.getPerBlock() !=0 ) {
+			totalBlock++;
+		}
+		
+		//4-1. pn으로 현재 블럭 번호 구하기
+		
+		if(totalPage< this.getPn()) {
+			this.setPn(totalPage);
+		}
+		//4-2
+		Long curBlock = this.getPn()/this.getPerBlock();
+		if(this.getPn()%this.getPerBlock() != 0) {
 			curBlock++;
 		}
 		
-	//5. curBlock으로 시작번호와 마지막 번호 구하기
+		//5. curBlock으로 StartNum, lastNum 계산
+		this.startNum = (curBlock-1)*this.getPerBlock()+1;
+		this.lastNum = curBlock*this.getPerBlock();
 		
-		this.startNum=(curBlock-1)*5+1;
-		this.lastNum = curBlock*5;
+		//6. curBlock이 마지막 Block일때 lastNum 변경
 		
 		if(curBlock == totalBlock) {
 			this.lastNum = totalPage;
 		}
-	
 	}
 	
-	//pn의 값에 1 미만의 숫자를 넣었을경우 1로 설정 
+	
+	// ------------- Setter, Getter----------------
+	
+	//입력한 페이지의 숫자가 1보다 작거나 null이 들어와도 1로 치환
 	public Long getPn() {
-		if(this.pn ==null || this.pn<=0) {
+		if(this.pn == null || this.pn < 1) {
 			this.pn = 1L;
 		}
-		
 		return pn;
 	}
+
 	public void setPn(Long pn) {
 		this.pn = pn;
 	}
+
 	
-	//한 페이지당 보이는 게시글 개수 - 10개로 기본세팅
 	public Long getPerPage() {
-		if(this.perPage == null || this.perPage == 0) {
-			this.perPage = 10L;
-		}
-		
+		this.perPage = 10L;
 		return perPage;
 	}
+
 	public void setPerPage(Long perPage) {
 		this.perPage = perPage;
 	}
+
+	public Long getPerBlock() {
+		this.perBlock=5L;
+		return perBlock;
+	}
+
+	public void setPerBlock(Long perBlock) {
+		this.perBlock = perBlock;
+	}
+
 	public Long getStartRow() {
 		return startRow;
 	}
+
 	public void setStartRow(Long startRow) {
 		this.startRow = startRow;
 	}
+
 	public Long getLastRow() {
 		return lastRow;
 	}
+
 	public void setLastRow(Long lastRow) {
 		this.lastRow = lastRow;
 	}
+
 	public Long getStartNum() {
 		return startNum;
 	}
+
 	public void setStartNum(Long startNum) {
 		this.startNum = startNum;
 	}
+
 	public Long getLastNum() {
 		return lastNum;
 	}
+
 	public void setLastNum(Long lastNum) {
 		this.lastNum = lastNum;
 	}
-	public Long getTotalPage() {
-		return totalPage;
+
+	public Long getTotalBlock() {
+		return totalBlock;
 	}
-	public void setTotalPage(Long totalPage) {
-		this.totalPage = totalPage;
+
+	public void setTotalBlock(Long totalBlock) {
+		this.totalBlock = totalBlock;
 	}
+
 	public String getKind() {
 		return kind;
 	}
+
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
+	//검색시 아무것도 안넣었을때 전체 페이지 보이도록
 	public String getSearch() {
 		if(this.search == null) {
-		this.search = "";
+			this.search="";
 		}
 		return search;
 	}
 
 	public void setSearch(String search) {
-	
 		this.search = search;
 	}
-	
-	
 
+	public Long getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(Long totalPage) {
+		this.totalPage = totalPage;
+	}
+
+	
+	
 }

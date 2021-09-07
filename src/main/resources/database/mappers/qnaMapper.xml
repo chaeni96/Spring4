@@ -23,7 +23,7 @@
  			</otherwise>
  		</choose>
  		LIKE '%' || #{search} || '%'
- 		ORDER BY NUM DESC
+ 	
  	</select>
  	
   
@@ -48,10 +48,32 @@
 	 		</choose>
 		        LIKE '%' || #{search} || '%'
 		    
-		     ORDER BY NUM DESC)
+		     ORDER BY REF DESC, STEP ASC)
 		    Q)
 		    
 		WHERE R between #{startRow} and #{lastRow}
  	</select>
+ 	
+ 	<select id="getSelect" parameterType="BoardDTO" resultType="QnaDTO">
+		SELECT * FROM QNA WHERE NUM = #{num}
+	</select>
+ 	
+ 	<select id="setInsert" parameterType="BoardDTO" >
+  	  INSERT INTO QNA(num, title, contents, writer, regDate, hits, ref, step, depth) 
+  	  VALUES(qna_seq.nextval,#{title},#{contents},#{writer}, SYSDATE, 0, qna_seq.currval, 0, 0)
+  	</select>
+ 	
+ 	<update id="setReplyUpdate" parameterType="QnaDTO">
+ 		UPDATE QNA SET STEP = STEP+1 WHERE ref=#{ref} and step>#{step}
+ 
+ 	</update>
+ 	
+ 	<insert id="setReply" parameterType="QnaDTO">
+ 		INSERT INTO QNA(NUM, TITLE, CONTENTS, WRITER, REGDATE, HITS, REF, STEP, DEPTH)
+ 		VALUES(qna_seq.nextval, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{ref}, #{step}, #{depth})
+ 	
+ 	</insert>
+ 	
+ 	
  	
   </mapper>

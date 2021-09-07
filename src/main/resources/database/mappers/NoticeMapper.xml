@@ -8,25 +8,10 @@
   <select id="getCount" parameterType="Pager" resultType="Long">
   
   	SELECT COUNT(NUM) FROM NOTICE
-  		 WHERE 
-  		 <choose>
-  		 	<when test="kind == 'num'">
-				num
-			</when>
-			
-			<when test="kind == 'title'">
-				title
-			</when>
-			
-			<when test="kind == 'contents'">
-				contents
-			</when>
-			
-  		 	<otherwise>writer</otherwise>
-  		 	
-  		 </choose>
-  		 
-  		 LIKE '%' || #{search} || '%'
+  		
+  		<if test="kind == 'k1'">WHERE title LIKE '%' || #{search} || '%'</if>
+  		<if test="kind == 'k2'">WHERE contents LIKE '%' || #{search} || '%'</if>
+  		<if test="kind == 'k3'">WHERE writer LIKE '%' || #{search} || '%'</if>
   		
   </select>
   
@@ -38,15 +23,11 @@
   		 WHERE 
   		 
   		 <choose>
-  		<when test="kind == 'num'">
-				num
-			</when>
-			
-			<when test="kind == 'title'">
+  		<when test="kind == 'k1'">
 				title
 			</when>
 			
-			<when test="kind == 'contents'">
+			<when test="kind == 'k2'">
 				contents
 			</when>
 			
