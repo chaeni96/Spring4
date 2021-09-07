@@ -113,13 +113,14 @@ public class Pager {
 		this.kind = kind;
 	}
 	public String getSearch() {
+		if(this.search == null) {
+		this.search = "";
+		}
 		return search;
 	}
-	//검색시 아무것도 안넣었을때 전체 페이지 보이도록
+
 	public void setSearch(String search) {
-		if(this.search == null) {
-			this.search = "";
-		}
+	
 		this.search = search;
 	}
 	
