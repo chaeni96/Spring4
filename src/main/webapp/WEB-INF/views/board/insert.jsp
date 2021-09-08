@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/boot_head.jsp"></c:import>
+	
+<script type="text/javascript" src="../resources/js/boardCheck.js"></script>
 </head>
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>
@@ -30,8 +32,7 @@
 				<label for="contents" class="form-label">Contents</label>
 				<textarea id="contents" name="contents" rows="6" cols="110" placeholder="Input some text."></textarea>
 			</div>
-		
-		<script type="text/javascript" src="../resources/js/boardCheck.js"></script>
+	
 		
 		<div align="left" class="mt-3">
 			<button type="button" id="b1" class="btn btn-primary">ADD</button>
