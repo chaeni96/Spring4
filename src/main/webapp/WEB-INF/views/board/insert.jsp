@@ -31,9 +31,10 @@
 				<textarea id="contents" name="contents" rows="6" cols="110" placeholder="Input some text."></textarea>
 			</div>
 		
+		<script type="text/javascript" src="../resources/js/boardCheck.js"></script>
 		
 		<div align="left" class="mt-3">
-			<button type="submit" class="btn btn-primary">ADD</button>
+			<button type="button" id="b1" class="btn btn-primary">ADD</button>
 			
 		</div>
 		
