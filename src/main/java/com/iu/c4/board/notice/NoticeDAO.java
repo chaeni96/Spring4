@@ -53,6 +53,12 @@ public class NoticeDAO implements BoardDAO {
 		return 0;
 	}
 	
+	@Override
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAMESPACE+"setHitUpdate", boardDTO);
+	}
+	
 	
 	
 }
