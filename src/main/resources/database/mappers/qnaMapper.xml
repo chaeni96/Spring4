@@ -74,8 +74,9 @@
  	
  	</insert>
  	
- 	<update id="setHitUpdate" parameterType="BoardDTO">
-			update qna set hits= hits+1 where num=#{num}
+	<update id="setHitUpdate" parameterType="BoardDTO">
+		UPDATE QNA SET HITS= hits+1 where num=#{num}
 	</update>
  	
+
   </mapper>

@@ -71,7 +71,4 @@ public class QnaDAO implements BoardDAO {
 		return sqlSession.update(NAMESAPCE+"setHitUpdate", boardDTO);
 	}
 
-	
-	
-
 }
