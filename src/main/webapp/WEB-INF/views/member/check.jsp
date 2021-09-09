@@ -13,12 +13,13 @@
 <h1>Check page</h1>
 	
 	<div class="container-fluid">
-	<div class="form-check">
-  	<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  	<label class="form-check-label" for="flexCheckDefault">
-    	Check All
-  	</label>
 		
+		<div class="form-check">
+	  	<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+	  	<label class="form-check-label" for="flexCheckDefault">
+	    	Check All
+	  	</label>
+			
 		<div class="form-check">
 		  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
 		  <label class="form-check-label" for="flexCheckDefault">
@@ -58,5 +59,7 @@
 		</div>
 		
 </div>
+
+<script type="text/javascript" src="../resources/js/check.js"></script>
 </body>
 </html>
