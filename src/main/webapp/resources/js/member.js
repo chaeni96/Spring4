@@ -26,13 +26,14 @@
 				result=false;
 				break;
 			}
-		}
-		
+		}		
+
 		if(result){
 			location.href="./join";
 		}else{
 			alert("필수 약관에 동의하세요");
 		}
+		
 	});
 
 
