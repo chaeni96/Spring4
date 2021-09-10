@@ -21,13 +21,12 @@
 //---------------- 필수 동의시 가입
 	btn.addEventListener('click',function(){
 		let result="true";
-		for(m of must){
+		for(let m of must){
 			if(!m.checked){
 				result=false;
 				break;
 			}
 		}
-		m.checked=result;
 		
 		if(result){
 			location.href="./join";
