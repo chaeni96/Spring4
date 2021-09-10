@@ -26,9 +26,7 @@
 				result=false;
 				break;
 			}
-		}
-		m.checked=result;
-		
+		}	
 		if(result){
 			location.href="./join";
 		}else{
