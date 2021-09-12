@@ -92,8 +92,11 @@
 			    </li>
 			  </ul>
 			</nav>
+		
+		<c:if test="${not empty member }">	
+			<a href="./insert" class="btn btn-secondary">ADD</a>		
+		</c:if>
 			
-		<a href="./insert" class="btn btn-secondary">ADD</a>		
 		
 		</div>
 	</div>

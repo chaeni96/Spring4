@@ -22,7 +22,7 @@
 		<h3>HITS : ${dto.hits}</h3>
 		
 		<!-- 게시글 삭제 page 이동 -->
-		<a href="./update?num=${dto.num}" class="btn btn-primary">Update</a>
+		<a href="./update?num=${dto.num}" class="btn btn-primary">Modify</a>
 		<a href="./delete?num=${dto.num}" class="btn btn-danger">Delete</a>
 		
 		<c:if test="${board ne 'notice'}">

@@ -74,19 +74,51 @@ public class MemberController {
 		return mv;
 	}
 	
+	//------------join
 	@GetMapping("join")
 	public ModelAndView join() throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/join");
 		return mv;
 	}
+	@PostMapping("join")
+	public ModelAndView join(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = memberService.setInsert(memberDTO);
+		mv.setViewName("redirect: ../");
+		return mv;
+	}
 	
-	//mypage
-	
+	//-------------------mypage
 	@GetMapping("mypage")
 	public ModelAndView mypage() throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/mypage");
+		return mv;
+	}
+	
+	//------------------mypage 수정
+	@GetMapping("modify")
+	public ModelAndView modify(ModelAndView mv) throws Exception{
+		mv.setViewName("member/modify");
+		return mv;
+	}
+	
+	@PostMapping("modify")
+	public ModelAndView modify(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = memberService.setUpdate(memberDTO);
+		mv.setViewName("redirect:../");
+		return mv;
+	}
+	
+	//--------------------탈퇴
+	@GetMapping("delete")
+	public ModelAndView delete(MemberDTO memberDTO, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberService.setDelete(memberDTO);
+		session.removeAttribute("member");
+		mv.setViewName("redirect: ../");
 		return mv;
 	}
 

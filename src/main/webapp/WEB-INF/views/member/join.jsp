@@ -25,14 +25,13 @@
 	  
 	  <div class="mb-3">
 	    <label for="exampleInputPassword1" class="form-label">Password</label>
-	    <input type="password" class="form-control put pw " id="pw1">
-	    <div id="pwResult1"></div>
+	    <input type="password" class="form-control put pw " id="pw1" name="pw1">
 	  </div>
 	
 	  <div class="mb-3">
 	    <label for="exampleInputPassword1" class="form-label">Password 확인</label>
-	    <input type="password" class="form-control put pw" id="pw2" placeholder="password를 한번더 입력하세요">
-	  	<div id="pwResult2" style="color:red;"></div>
+	    <input type="password" class="form-control put pw" id="pw2" name="pw2" placeholder="password를 한번더 입력하세요">
+	  	<div id="pwCheck" style="color:red;"></div>
 	  </div>
 	  
 	  <div class="mb-3">

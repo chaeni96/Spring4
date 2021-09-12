@@ -20,5 +20,20 @@ public class MemberDAO {
 	public MemberDTO getLogin(MemberDTO memberDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);
 	}
+	
+	//회원가입
+	public int setInsert(MemberDTO memberDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setInsert", memberDTO);
+	}
+	
+	//mypage 수정
+	public int setUpdate(MemberDTO memberDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setUpdate", memberDTO);
+	}
+	
+	//탈퇴
+	public int setDelete(MemberDTO memberDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDelete", memberDTO);
+	}
 
 }
