@@ -67,7 +67,7 @@ public class QnaDAO implements BoardDAO {
 	//조회수 업데이트
 	@Override
 	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.update(NAMESAPCE+"setHitUpdate", boardDTO);
 	}
 
