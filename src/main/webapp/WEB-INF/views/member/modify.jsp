@@ -11,7 +11,7 @@
 <c:import url="../temp/boot_nav.jsp"></c:import>
 	
 	<div class="container-fluid">
-		<form id="frm" class="col-md-5 mx-auto" action="./modify" method="POST">
+		<form id="frm" class="col-md-5 mx-auto" action="modify" method="POST">
 			
 			<div class="mb-3">
 				<label for="id" class="form-label">ID</label> 
@@ -21,19 +21,19 @@
 			
 			<div class="mb-3">
 				<label for="pw" class="form-label">PassWord</label> 
-				<input type="password" class="form-control my pws" name="pw1" id="pw1" placeholder="Enter password">
+				<input type="password" class="form-control my pws" name="pw" id="pw1" placeholder="Enter password">
 			</div>
 			
 			<div class="mb-3">
 				<label for="pw2" class="form-label">PassWord 확인</label> 
-				<input type="password" class="form-control my pws" name="pw2" id="pw2" placeholder="Enter password again">
+				<input type="password" class="form-control my pws"  id="pw2" placeholder="Enter password again">
 				<div id="pwCheck" style="color:red;"></div>
 			</div>
 			
 			
 			<div class="mb-3">
 				<label for="name" class="form-label">Name</label> 
-				<input type="text" class="form-control my" name="name" id="name" placeholder="Enter name" value="${member.name}">
+				<input type="text" class="form-control my" name="name" id="name" readonly="readonly" placeholder="Enter name" value="${member.name}">
 			</div>
 			
 			
@@ -48,8 +48,8 @@
 				<input type="email" class="form-control my" name="email" id="email"  value="${member.email}" >
 			</div>
 			
-			<div class="mt-3 ml-0" id="revise">
-				<button id="btn" type="button" class="btn btn-primary">Okay</button>
+			<div class="mt-3 ml-0" id="modify">
+				<button id="btn" type="submit" class="btn btn-primary">Okay</button>
 			</div>
 		</form>
 	</div>

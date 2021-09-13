@@ -1,6 +1,5 @@
 package com.iu.c4.member;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,7 +84,15 @@ public class MemberController {
 	public ModelAndView join(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.setJoin(memberDTO);
-		mv.setViewName("redirect: ../");
+		
+		String message = "회원가입 실패";
+		
+		if(result >0) {
+			message = "회원가입 성공";
+		}
+		mv.addObject("msg", message);
+		mv.addObject("url", "../");
+		mv.setViewName("common/result");
 		return mv;
 	}
 	
@@ -105,19 +112,28 @@ public class MemberController {
 	}
 	
 	@PostMapping("modify")
-	public ModelAndView modify(MemberDTO memberDTO) throws Exception{
+	public ModelAndView modify(MemberDTO memberDTO, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		//수정전 데이터
+		MemberDTO sessionDTO = (MemberDTO)session.getAttribute("member");
+		//수정 후 데이터
+		memberDTO.setId(sessionDTO.getId());
 		int result = memberService.setUpdate(memberDTO);
+		memberDTO.setName(sessionDTO.getName());
+		
+		session.setAttribute("member", memberDTO);
 		mv.setViewName("redirect:../");
 		return mv;
 	}
 	
 	//--------------------탈퇴
 	@GetMapping("delete")
-	public ModelAndView delete(MemberDTO memberDTO, HttpSession session) throws Exception{
+	public ModelAndView delete(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		memberService.setDelete(memberDTO);
-		session.removeAttribute("member");
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		int result = memberService.setDelete(memberDTO);
+		session.invalidate();
+		/* session.invalidate 대신 mv.setViewName("redirect: ./logout"); */
 		mv.setViewName("redirect: ../");
 		return mv;
 	}

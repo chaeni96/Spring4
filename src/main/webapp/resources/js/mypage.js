@@ -3,13 +3,16 @@
  */
  
  const modify = document.getElementById('modify');
- const delete1 = document.getElementById('delete');
- 
+ /*const del= document.getElementById('delete');*/
+ const del = document.querySelector("#delete")
  modify.addEventListener('click', function(){
 	location.href = "./modify";
 });
 
- delete1.addEventListener('click', function(){
-	location.href = "./delete?id="+delete1.value;
+ del.addEventListener('click', function(){
+	let result = confirm('Delete???????');
+	if(result){	
+		location.href = "./delete";
+	}
 })
  

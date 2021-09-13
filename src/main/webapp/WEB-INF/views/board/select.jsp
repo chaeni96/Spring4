@@ -22,8 +22,12 @@
 		<h3>HITS : ${dto.hits}</h3>
 		
 		<!-- 게시글 삭제 page 이동 -->
+		<c:if test="${not empty member and member.id eq dto.writer}">
+		
 		<a href="./update?num=${dto.num}" class="btn btn-primary">Modify</a>
 		<a href="./delete?num=${dto.num}" class="btn btn-danger">Delete</a>
+		
+		</c:if>
 		
 		<c:if test="${board ne 'notice'}">
 		<a href="./reply?num=${dto.num}" class="btn btn-warning">Reply</a>

@@ -18,7 +18,7 @@
 	
 	<button id="modify" class="btn btn-secondary" >정보 수정</button>
 	<button id="delete" class="btn btn-danger" value="${member.id}">회원탈퇴</button>
-		
+
 	<script type="text/javascript" src="../resources/js/mypage.js"></script>
 </body>
 </html>
