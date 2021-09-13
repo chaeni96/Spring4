@@ -6,6 +6,7 @@
 <html>
 <head>
 <c:import url="../temp/boot_head.jsp"></c:import>
+
 <title>Join</title>
 </head>
 <c:import url="../temp/boot_nav.jsp"></c:import>
@@ -51,6 +52,18 @@
 	  
 	  </div>
 	  
+	    <div class="mb-3 my-4" id="files">
+	    <label class="form-label"></label>
+	    <button id="add" type="button" class="btn btn-info">File Add</button>
+	  </div>
+	  
+	  <!-- input file 추가영역 -->
+	  <div id="addResult">
+	  	
+	  
+	  </div>
+	  
+	  
 	  <div class="mb-3 my-4">
 	    <label class="form-label"></label>
 	    <button id="btn" type="button" class="btn btn-primary">Register</button>
@@ -60,7 +73,13 @@
 	  
 	</form>
 	
+	  <!-- <div class="mb-3" id="f">
+	    <label for="photo" class="form-label">Photo</label>
+	    <input type="file" class="form-control put" name="photo" id="photo">	  
+	  </div>
+	   -->
 	
 <script type="text/javascript" src="../resources/js/join.js"></script>
+<script type="text/javascript" src="../resources/js/file.js"></script>
 </body>
 </html>
