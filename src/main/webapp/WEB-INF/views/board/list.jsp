@@ -35,7 +35,6 @@
 				<tr class="table table-dark">
 					<th>번호</th>
 					<th>제목</th>
-					<th>내용</th>
 					<th>작성자</th>
 					<th>작성일</th>
 					<th>조회수</th>
@@ -51,7 +50,6 @@
 							</c:forEach>
 						</c:catch>
 					${dto.title}</a></td>
-					<td>${dto.contents}</td>
 					<td>${dto.writer}</td>
 					<td>${dto.regDate}</td>
 					<td>${dto.hits}</td>
@@ -92,8 +90,11 @@
 			    </li>
 			  </ul>
 			</nav>
+		
+		<c:if test="${not empty member}">	
+			<a href="./insert" class="btn btn-secondary">ADD</a>		
+		</c:if>
 			
-		<a href="./insert" class="btn btn-secondary">ADD</a>		
 		
 		</div>
 	</div>
