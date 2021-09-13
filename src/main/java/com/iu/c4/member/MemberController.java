@@ -84,7 +84,7 @@ public class MemberController {
 	@PostMapping("join")
 	public ModelAndView join(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = memberService.setInsert(memberDTO);
+		int result = memberService.setJoin(memberDTO);
 		mv.setViewName("redirect: ../");
 		return mv;
 	}

@@ -7,7 +7,7 @@
   <mapper namespace="com.iu.c4.member.MemberDAO">
   	
   	<!-- 회원가입 -->
-  	<insert id="setInsert" parameterType="MemberDTO">
+  	<insert id="setJoin" parameterType="MemberDTO">
   		INSERT INTO MEMBER VALUES(#{id}, #{pw}, #{name}, #{phone}, #{email})
   	</insert>
   	

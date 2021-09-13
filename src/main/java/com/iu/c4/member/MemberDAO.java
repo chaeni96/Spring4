@@ -22,8 +22,8 @@ public class MemberDAO {
 	}
 	
 	//회원가입
-	public int setInsert(MemberDTO memberDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE+"setInsert", memberDTO);
+	public int setJoin(MemberDTO memberDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);
 	}
 	
 	//mypage 수정
