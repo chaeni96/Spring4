@@ -13,7 +13,7 @@
 		<typeAlias type="com.iu.c4.util.Pager" alias="Pager"/>
 		<typeAlias type="com.iu.c4.member.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.iu.c4.member.MemberFilesDTO" alias="MemberFilesDTO"/>
-  		
+  		<typeAlias type="java.util.List" alias="List"/>
   		<typeAlias type="java.lang.Long" alias="Long"/>
   	
   	</typeAliases>

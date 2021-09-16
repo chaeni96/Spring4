@@ -16,7 +16,7 @@
 	<h3>Email : ${member.email}</h3>
 	<h3>Phone : ${member.phone}</h3>
 	<div>
-		<img alt="" src="../resources/upload/member/${files.fileName}">
+		<img alt="" src="../resources/upload/member/${member.memberFilesDTO.fileName}">
 	</div>
 	
 	<button id="modify" class="btn btn-secondary" >정보 수정</button>
