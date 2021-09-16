@@ -8,16 +8,23 @@ import org.springframework.stereotype.Repository;
 
 import com.iu.c4.board.BoardDAO;
 import com.iu.c4.board.BoardDTO;
+import com.iu.c4.board.BoardFilesDTO;
 import com.iu.c4.util.Pager;
 
 
 @Repository
 public class QnaDAO implements BoardDAO {
 
+
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESAPCE = "com.iu.c4.board.qna.QnaDAO.";
 	
+	@Override
+	public int setFile(BoardFilesDTO boardFilesDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESAPCE+"setFile", boardFilesDTO);
+	}
 	
 	@Override
 	public Long getCount(Pager pager) throws Exception {
@@ -70,6 +77,12 @@ public class QnaDAO implements BoardDAO {
 
 		return sqlSession.update(NAMESAPCE+"setHitUpdate", boardDTO);
 
+	}
+	
+	@Override
+	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESAPCE+"getFiles", boardDTO);
 	}
 
 }

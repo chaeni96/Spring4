@@ -7,11 +7,13 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="com.iu.c4.board.BoardDTO" alias="BoardDTO"/>
+  		<typeAlias type="com.iu.c4.board.BoardFilesDTO" alias="BoardFilesDTO"/>
   		<typeAlias type="com.iu.c4.board.notice.NoticeDTO" alias="NoticeDTO"/>
   		<typeAlias type="com.iu.c4.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.iu.c4.util.Pager" alias="Pager"/>
 		<typeAlias type="com.iu.c4.member.MemberDTO" alias="MemberDTO"/>
-		
+		<typeAlias type="com.iu.c4.member.MemberFilesDTO" alias="MemberFilesDTO"/>
+  		
   		<typeAlias type="java.lang.Long" alias="Long"/>
   	
   	</typeAliases>

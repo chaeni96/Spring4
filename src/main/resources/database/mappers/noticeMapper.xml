@@ -48,11 +48,25 @@
 	
 	</select>
   
-  	
-  	<select id="setInsert" parameterType="BoardDTO" >
-  	  INSERT INTO NOTICE(num, title, contents, writer, regDate, hits) 
-  	  VALUES(notice_seq.nextval,#{title},#{contents},#{writer}, sysdate, 0)
+  	<select id="getFiles" parameterType="BoardDTO" resultType="BoardFilesDTO">
+  		SELECT * FROM NOTICEFILES WHERE NUM = #{num}
   	</select>
+  
+  	
+  	<insert id="setInsert" parameterType="BoardDTO" >
+		<selectKey order="BEFORE" resultType="Long" keyProperty="num">
+			select notice_seq.nextval from dual 
+		</selectKey>
+		
+  	  INSERT INTO NOTICE(num, title, contents, writer, regDate, hits) 
+  	  VALUES(#{num}, #{title},#{contents},#{writer}, sysdate, 0)
+  	</insert>
+  	
+  	<insert id="setFile" parameterType="BoardFilesDTO">
+  		INSERT INTO NOTICEFILES (FILENUM, NUM, FILENAME, ORINAME)
+  		VALUES (files_seq.nextval, #{num}, #{fileName}, #{oriName})
+  		
+  	</insert>
   	
   	
   	<delete id="setDelete" parameterType="BoardDTO">

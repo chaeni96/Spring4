@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -81,10 +82,19 @@ public class MemberController {
 		return mv;
 	}
 	@PostMapping("join")
-	public ModelAndView join(MemberDTO memberDTO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		int result = memberService.setJoin(memberDTO);
+	public ModelAndView join(MemberDTO memberDTO, MultipartFile photo, HttpSession session) throws Exception{
 		
+		/*
+		 * String original = photo.getOriginalFilename(); String name = photo.getName();
+		 * long size = photo.getSize();
+		 * 
+		 * System.out.println("Original : "+original);
+		 * System.out.println("name : "+name); System.out.println("size : "+size);
+		 */
+		
+		ModelAndView mv = new ModelAndView();
+		int result = memberService.setJoin(memberDTO, photo, session);
+	
 		String message = "회원가입 실패";
 		
 		if(result >0) {
@@ -98,11 +108,17 @@ public class MemberController {
 	
 	//-------------------mypage
 	@GetMapping("mypage")
-	public ModelAndView mypage() throws Exception{
+	public ModelAndView mypage(HttpSession session) throws Exception{
+		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		MemberFilesDTO memberFilesDTO = memberService.getFile(memberDTO);
+		
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("files", memberFilesDTO);
 		mv.setViewName("member/mypage");
 		return mv;
 	}
+	
 	
 	//------------------mypage 수정
 	@GetMapping("modify")

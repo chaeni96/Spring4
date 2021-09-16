@@ -10,16 +10,16 @@
 </head>
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>
+
 	<h1>${board}Insert Page</h1>
-
-
-<div class="container-fluid">
-		<form class="col-md-5 mx-auto" action="./insert" method="POST">
+	
+	<div class="container-fluid">
+		<form class="col-md-5 mx-auto" action="./insert" method="POST" enctype="multipart/form-data">
 		
-		<div class="mb-3">
-		  	<label for="title" class="form-label">Title</label>
-		  	<input type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
-		</div>
+			<div class="mb-3">
+		  		<label for="title" class="form-label">Title</label>
+		  		<input type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
+			</div>
 			
 			<div class="mb-3">
 				<label for="writer" class="form-label">Writer</label> 
@@ -32,13 +32,27 @@
 			</div>
 		
 		
+		<!-- button 추가 -->
+		
+		<button id="fileAdd" type="button" class="btn btn-primary">File Add</button>	
+		<button type="button" class="del">Delete</button>
+		<div id="fileAddResult">
+		</div>
+		
 		<div align="left" class="mt-3">
 			<button type="submit" class="btn btn-primary">ADD</button>
-			
 		</div>
 		
 		</form>
-	
+		
 	</div>
+	
+
+	
+	
+	<script type="text/javascript" src="../resources/js/boardFile.js">
+	//코드작성금지
+	</script>
+
 </body>
 </html>

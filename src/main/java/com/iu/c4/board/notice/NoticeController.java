@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.c4.board.BoardDTO;
+import com.iu.c4.board.BoardFilesDTO;
 import com.iu.c4.util.Pager;
 
 @Controller
@@ -43,7 +45,9 @@ public class NoticeController {
 	public ModelAndView getSelelct(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		boardDTO = noticeService.getSelect(boardDTO);
+		List<BoardFilesDTO> ar = noticeService.getFiles(boardDTO);
 		mv.addObject("dto", boardDTO);
+		mv.addObject("fileList", ar);
 		mv.setViewName("board/select");
 		return mv;
 	}
@@ -57,15 +61,38 @@ public class NoticeController {
 	}
 
 	@PostMapping("insert")
-	public ModelAndView setInsert(BoardDTO boardDTO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		int result = noticeService.setInsert(boardDTO);
+	public ModelAndView setInsert(BoardDTO boardDTO, MultipartFile [] files) throws Exception{
+		//original fileName 출력
 		
+		for(MultipartFile muFile : files) {
+			System.out.println(muFile.getOriginalFilename());
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setInsert(boardDTO, files);
 		mv.setViewName("redirect:./list");
 		
 		return mv;
 	}
 	
+	@GetMapping("delete")
+	public ModelAndView setDelete(BoardDTO boardDTO) throws Exception{
+		int result = noticeService.setDelete(boardDTO);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		String message = "Delete Fail";
+		if(result>0) {
+			message = "Delete Success";
+		}
+		
+		mv.addObject("msg", message);
+		mv.addObject("url", "./list");
+		
+		mv.setViewName("common/result");
+		return mv;
+		
+	}
 	
 
 }

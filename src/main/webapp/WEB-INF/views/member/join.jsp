@@ -14,7 +14,7 @@
 	
       <h1 >Register</h1>
 	
-		<form  id = "frm" action="join" method="post" class="col-md-6 mx-auto" >
+		<form  id = "frm" action="join" method="post" enctype="multipart/form-data" class="col-md-6 mx-auto" >
 	  
 	  <div class="mb-3">
 	    <label for="text" class="form-label">ID</label>
@@ -52,34 +52,26 @@
 	  
 	  </div>
 	  
-	    <div class="mb-3 my-4" id="files">
-	    <label class="form-label"></label>
-	    <button id="add" type="button" class="btn btn-info">File Add</button>
+	 <div class="mb-3" id="f">
+	    <label for="photo" class="form-label">Photo</label>
+	    <input type="file" class="form-control put" name="photo" id="photo">	  
 	  </div>
 	  
-	  <!-- input file 추가영역 -->
-	  <div id="addResult">
-	  	
-	  
-	  </div>
 	  
 	  
 	  <div class="mb-3 my-4">
 	    <label class="form-label"></label>
-	    <button id="btn" type="button" class="btn btn-primary">Register</button>
+	    <button id="btn" type="submit" class="btn btn-primary">Register</button>
 	  
 	  </div>
 	  
 	  
 	</form>
 	
-	  <!-- <div class="mb-3" id="f">
-	    <label for="photo" class="form-label">Photo</label>
-	    <input type="file" class="form-control put" name="photo" id="photo">	  
-	  </div>
-	   -->
+
+	   
 	
-<script type="text/javascript" src="../resources/js/join.js"></script>
-<script type="text/javascript" src="../resources/js/file.js"></script>
+<!-- <script type="text/javascript" src="../resources/js/join.js"></script>
+<script type="text/javascript" src="../resources/js/file.js"></script> -->
 </body>
 </html>

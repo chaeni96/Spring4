@@ -21,6 +21,15 @@
 		<h3>REGDATE : ${dto.regDate}</h3>
 		<h3>HITS : ${dto.hits}</h3>
 		
+		<c:forEach items="${fileList}" var="f">
+			<div>
+				<img alt="" src="../resources/upload/${board}/${f.fileName}">		
+			</div>
+			
+		</c:forEach>
+		
+		
+		
 		<!-- 게시글 삭제 page 이동 -->
 		<c:if test="${not empty member and member.id eq dto.writer}">
 		

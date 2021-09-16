@@ -15,6 +15,9 @@
 	<h3>Name : ${member.name }</h3>
 	<h3>Email : ${member.email}</h3>
 	<h3>Phone : ${member.phone}</h3>
+	<div>
+		<img alt="" src="../resources/upload/member/${files.fileName}">
+	</div>
 	
 	<button id="modify" class="btn btn-secondary" >정보 수정</button>
 	<button id="delete" class="btn btn-danger" value="${member.id}">회원탈퇴</button>

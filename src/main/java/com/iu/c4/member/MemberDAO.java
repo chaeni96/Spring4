@@ -26,6 +26,11 @@ public class MemberDAO {
 		return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);
 	}
 	
+	//file 첨부	
+	public int setFileInsert(MemberFilesDTO memberFilesDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setFileInsert", memberFilesDTO);
+	}
+	
 	//mypage 수정
 	public int setUpdate(MemberDTO memberDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setUpdate", memberDTO);
@@ -34,6 +39,11 @@ public class MemberDAO {
 	//탈퇴
 	public int setDelete(MemberDTO memberDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDelete", memberDTO);
+	}
+	
+	//mypage에서 이미지 보기
+	public MemberFilesDTO getFile(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getFile", memberDTO);
 	}
 
 }

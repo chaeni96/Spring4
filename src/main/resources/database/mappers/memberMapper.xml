@@ -6,6 +6,11 @@
   
   <mapper namespace="com.iu.c4.member.MemberDAO">
   	
+  	<insert id="setFileInsert" parameterType="MemberFilesDTO">
+  		insert into memberFiles (num, id, fileName, oriName)
+  		values(files_seq.nextval, #{id}, #{fileName}, #{oriName})
+  	</insert>
+  	
   	<!-- 회원가입 -->
   	<insert id="setJoin" parameterType="MemberDTO">
   		INSERT INTO MEMBER VALUES(#{id}, #{pw}, #{name}, #{phone}, #{email})
@@ -31,5 +36,9 @@
   	<delete id="setDelete" parameterType="MemberDTO">
   		DELETE MEMBER WHERE ID = #{id} and PW = #{pw}
   	</delete>
-  
+  	
+  	<!-- 첨부파일 -->
+  	<select id="getFile" parameterType="MemberDTO" resultType="MemberFilesDTO">
+  		SELECT * FROM MEMBERFILES WHERE ID = #{id}
+  	</select>
   </mapper>
