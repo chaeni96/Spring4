@@ -25,17 +25,34 @@
 			<div>
 				<a href="./down?fileName=${f.fileName}">${f.oriName}</a>		
 			</div>
-			
 		</c:forEach>
 		
+		
+		<hr>
+			<div>
+				<div class="mb-3">
+				<label for="writer" class="form-label">Writer</label> 
+				<input type="text" class="form-control" name="writer" id="writer" value="${member.id}" placeholder="Enter Writer" readonly="readonly">
+			</div>
+		
+			<div class="mb-3">
+				<label for="contents" class="form-label">Contents</label>
+				<textarea id="contents" name="contents"  cols="" rows="6" placeholder="Input some text."></textarea>
+			</div>
+		
+			<div align="left" class="mt-3">
+				<button type="button" id="comment" class="btn btn-primary">Write</button>
+			</div>
+			
+			</div>
+		
+		<hr>
 		
 		
 		<!-- 게시글 삭제 page 이동 -->
 		<c:if test="${not empty member and member.id eq dto.writer}">
-		
 		<a href="./update?num=${dto.num}" class="btn btn-primary">Modify</a>
 		<a href="./delete?num=${dto.num}" class="btn btn-danger">Delete</a>
-		
 		</c:if>
 		
 		<c:if test="${board ne 'notice'}">
@@ -43,8 +60,20 @@
 		</c:if>
 	
 	</div>
-
+	
+	<script type="text/javascript">
+		$('#comment').click(function () {
+			//작성자, 내용 콘솔 출력	
+			let writer =$("#writer").val();
+			let contents = $("#contents").val();
+			
+			$.post('./comment', {num: '${dto.num}', writer:writer, contents:contents}, function(result) {
+				console.log(result.trim());
+			} );
+		});
+		
+	</script>
+	
 
 </body>
-
 </html>

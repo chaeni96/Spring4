@@ -21,11 +21,16 @@
 		<h3>Login을 하기전 보이는 문장</h3>
 	</c:if>
 	
+	<h1 id="ar"></h1>
 	<button id="btn">Click</button>
+	
 	<script type="text/javascript">
 	
 		$("#btn").click(function(){
-			alert('alert');
+			$.get("./ajax/t1?num=1", function (result) {
+				console.log(result.trim());
+				$('#ar').html(result.trim());
+			});
 		});
 	
 	</script>

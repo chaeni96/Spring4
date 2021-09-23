@@ -20,7 +20,7 @@
 	    <label for="text" class="form-label">ID</label>
 	    <input type="text" class="form-control put" id="id" name="id">
 	    <button id="idCheck" type="button">ID 중복확인</button>
-	    <div id= "idResult"></div>
+	    <div id= "idResult"> </div>
 	  
 	  </div>
 	  
@@ -71,7 +71,10 @@
 
 	   
 	
-<!-- <script type="text/javascript" src="../resources/js/join.js"></script>
-<script type="text/javascript" src="../resources/js/file.js"></script> -->
+<script type="text/javascript" src="../resources/js/join.js"></script>
+<script type="text/javascript" src="../resources/js/file.js"></script> 
+	
+	
+
 </body>
 </html>
