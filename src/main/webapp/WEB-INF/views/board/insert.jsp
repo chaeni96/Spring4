@@ -39,7 +39,7 @@
 		
 			<div class="mb-3">
 				<label for="contents" class="form-label">Contents</label>
-				<textarea id="contents" name="contents" rows="6" cols="110" placeholder="Input some text."></textarea>
+				<textarea class="form-label" id="contents" name="contents" rows="6" cols="110" placeholder="Input some text."></textarea>
 			</div>
 		
 		

@@ -1,6 +1,7 @@
 package com.iu.c4.board.notice;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iu.c4.board.BoardDTO;
 import com.iu.c4.board.BoardFilesDTO;
 import com.iu.c4.board.BoardService;
+import com.iu.c4.board.CommentsDTO;
 import com.iu.c4.util.FileManager;
 import com.iu.c4.util.Pager;
 
@@ -98,6 +100,26 @@ public class NoticeService implements BoardService {
 	
 	public int setReply(BoardDTO boardDTO) throws Exception{
 		return 0;
+	}
+	
+	//오버라이딩 하기
+	public int setComment(CommentsDTO commentsDTO) throws Exception{
+		return noticeDAO.setComment(commentsDTO);
+	}
+	
+	public List<CommentsDTO> getCommentList(CommentsDTO commentsDTO, Pager pager) throws Exception{
+		pager.setPerPage(5L);
+		pager.makeRow();
+		//전체 댓글의 개수
+		pager.makeNum(noticeDAO.getCommentCount(commentsDTO));
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("comments", commentsDTO);
+		map.put("pager", pager);
+		return noticeDAO.getCommentList(map);
+	}
+	
+	public int setCommentDel(CommentsDTO commentsDTO) throws Exception{
+		return noticeDAO.setCommentDel(commentsDTO);
 	}
 
 }

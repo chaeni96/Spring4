@@ -29,14 +29,47 @@ public class NoticeController {
 		return "notice";
 	}
 	
-	//setComment
-	@PostMapping("comment")
-	public void setComment(CommentsDTO commentsDTO) throws Exception{
-		System.out.println(commentsDTO.getWriter());
-		System.out.println(commentsDTO.getContents());
-		System.out.println(commentsDTO.getNum());
+	@GetMapping("getCommentList")
+	public ModelAndView getCommentList(CommentsDTO commentsDTO, Pager pager) throws Exception{
+		commentsDTO.setBoard("N");
+		ModelAndView mv = new ModelAndView();
+		 List<CommentsDTO> ar = noticeService.getCommentList(commentsDTO, pager);
+		 mv.addObject("comments", ar);
+		 mv.addObject("pager", pager);
+		 mv.setViewName("common/ajaxList");
+		return mv;
 	}
 	
+	//setComment
+	@PostMapping("comment")
+	public ModelAndView setComment(CommentsDTO commentsDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		commentsDTO.setBoard("N");
+		int result = noticeService.setComment(commentsDTO);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		
+		return mv;
+	}
+	
+	//setCommentDel
+	@GetMapping("commentDel")
+	public ModelAndView setCommentDel(CommentsDTO commentsDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setCommentDel(commentsDTO);
+		
+		String message = "Delete Fail";
+		if(result>0) {
+			message = "Delete Success";
+		}
+		
+		mv.addObject("msg", message);
+		mv.addObject("url", "./select");
+		
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
 	
 	@GetMapping("down")
 	public ModelAndView fileDown(BoardFilesDTO boardFilesDTO) throws Exception{
@@ -64,6 +97,8 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		boardDTO = noticeService.getSelect(boardDTO);
 		List<BoardFilesDTO> ar = noticeService.getFiles(boardDTO);
+		//List<CommentsDTO> comments = noticeService.getCommentList();
+		//mv.addObject("comments", comments);
 		mv.addObject("dto", boardDTO);
 		//mv.addObject("fileList", ar);
 		mv.setViewName("board/select");

@@ -5,6 +5,28 @@
   
   <mapper namespace="com.iu.c4.board.notice.NoticeDAO">
   
+  <insert id="setComment" parameterType="CommentsDTO">
+  	INSERT INTO COMMENTS VALUES(comments_seq.nextval, #{num}, #{writer}, #{contents}, sysdate, #{board})
+  
+  </insert>
+  
+  <select id="getCommentCount" parameterType="CommentsDTO" resultType="Long">
+ 	 	SELECT COUNT(commentNum) FROM COMMENTS
+  		WHERE board =#{board} and num =#{num}	
+  </select>
+  
+  <select id="getCommentList" parameterType="Map" resultType="CommentsDTO">
+	  	SELECT * FROM
+	  	(SELECT rownum R, C.* From
+		  	(SELECT * FROM COMMENTS WHERE BOARD =#{comments.board} and NUM=#{comments.num}
+		  	ORDER BY commentNum desc) C) 
+		  WHERE R between #{pager.startRow} and #{pager.lastRow}
+  </select>
+  
+  <delete id="setCommentDel" parameterType="CommentsDTO">
+  	DELETE COMMENTS WHERE NUM=#{comments.num}
+  </delete>
+  
   <select id="getCount" parameterType="Pager" resultType="Long">
   
   	SELECT COUNT(NUM) FROM NOTICE
@@ -14,6 +36,7 @@
   		<if test="kind == 'k3'">WHERE writer LIKE '%' || #{search} || '%'</if>
   		
   </select>
+  
   
 	<select id="getList" parameterType="Pager" resultType="NoticeDTO" >
  		SELECT * FROM

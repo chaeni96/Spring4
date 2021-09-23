@@ -1,6 +1,7 @@
 package com.iu.c4.board.notice;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.iu.c4.board.BoardDAO;
 import com.iu.c4.board.BoardDTO;
 import com.iu.c4.board.BoardFilesDTO;
+import com.iu.c4.board.CommentsDTO;
 import com.iu.c4.util.Pager;
 
 @Repository
@@ -71,4 +73,20 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.selectList(NAMESPACE+"getFiles", boardDTO);
 	}
 	
+	//BoardDAO에 선언하고 오버라이딩 하기
+	public int setComment(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setComment", commentsDTO);
+	}
+	
+	public List<CommentsDTO> getCommentList(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getCommentList", map);
+	}
+	
+	public Long getCommentCount(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCommentCount", commentsDTO);
+	}
+	
+	public int setCommentDel(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setCommentDel", commentsDTO);
+	}
 }

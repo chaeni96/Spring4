@@ -6,14 +6,19 @@
 <html>
 <head>
 <c:import url="../temp/boot_head.jsp"></c:import>
+<style type="text/css">
+	.more {
+		cursor: pointer;
+	}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>
 	
 	<div>
+	<div class="container-fluid col-md-8">
 	<h1>${board} Select Homepage</h1>
-	
 		<h3>NUM : ${dto.num}</h3>
 		<h3>Title : ${dto.title}</h3>
 		<div> ${dto.contents}</div>
@@ -29,6 +34,14 @@
 		
 		
 		<hr>
+		
+		<!-- comment list -->
+		<div id="commentList" data-board-num="${dto.num}">
+		
+		
+		</div>
+		
+		
 			<div>
 				<div class="mb-3">
 				<label for="writer" class="form-label">Writer</label> 
@@ -37,7 +50,7 @@
 		
 			<div class="mb-3">
 				<label for="contents" class="form-label">Contents</label>
-				<textarea id="contents" name="contents"  cols="" rows="6" placeholder="Input some text."></textarea>
+				<textarea class="form-label" id="contents" name="contents"  cols="" rows="6" placeholder="Input some text."></textarea>
 			</div>
 		
 			<div align="left" class="mt-3">
@@ -61,7 +74,46 @@
 	
 	</div>
 	
+	</div>
 	<script type="text/javascript">
+	
+		getCommentList(1);
+		
+		//Del click event
+		$("#commentList").on("click", ".commentDel", function() {
+			let commentNum = $(this).attr("data-comment-del");
+			console.log(commentNum);
+			//url ./commentDel
+		});
+		
+		$("#commentList").on("click", ".more", function() {
+			//data-comment-pn 값을 출력
+			
+			let pn = $(this).attr("data-comment-pn")
+			getCommentList(pn);
+		});
+		
+		function getCommentList(pageNumber) {
+			let num = $("#commentList").attr("data-board-num");
+			
+			$.ajax({
+				type : "GET",
+				url : "./getCommentList",
+				data : {
+					num:num, 
+					pn : pageNumber
+					}, //parameter명:변수명
+				success : function(result) {
+					result = result.trim();
+					$("#commentList").html(result);
+				},
+				error : function(xhr, status, error) {
+					console.log(error);
+				}
+			})
+		}
+	
+	
 		$('#comment').click(function () {
 			//작성자, 내용 콘솔 출력	
 			let writer =$("#writer").val();
@@ -69,11 +121,13 @@
 			
 			$.post('./comment', {num: '${dto.num}', writer:writer, contents:contents}, function(result) {
 				console.log(result.trim());
+				
+				$("#contents").val('');
+				getCommentList();
 			} );
 		});
 		
 	</script>
-	
 
 </body>
 </html>
