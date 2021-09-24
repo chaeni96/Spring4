@@ -53,21 +53,12 @@ public class NoticeController {
 	}
 	
 	//setCommentDel
-	@GetMapping("commentDel")
+	@PostMapping("commentDel")
 	public ModelAndView setCommentDel(CommentsDTO commentsDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = noticeService.setCommentDel(commentsDTO);
-		
-		String message = "Delete Fail";
-		if(result>0) {
-			message = "Delete Success";
-		}
-		
-		mv.addObject("msg", message);
-		mv.addObject("url", "./select");
-		
-		mv.setViewName("common/result");
-		
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
 		return mv;
 	}
 	
@@ -146,6 +137,18 @@ public class NoticeController {
 		return mv;
 		
 	}
+	
+	@PostMapping("commentUpdate")
+	public ModelAndView setCommentUpdate(CommentsDTO commentsDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setCommentUpdate(commentsDTO);
+		
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		
+		return mv;
+	}
+	
 	
 
 }

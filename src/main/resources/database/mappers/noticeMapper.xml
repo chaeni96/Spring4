@@ -24,8 +24,12 @@
   </select>
   
   <delete id="setCommentDel" parameterType="CommentsDTO">
-  	DELETE COMMENTS WHERE NUM=#{comments.num}
+  	DELETE COMMENTS WHERE commentNum=#{commentNum}
   </delete>
+  
+  <update id="setCommentUpdate" parameterType="CommentsDTO">
+  	UPDATE COMMENTS SET CONTENTS=#{contents} WHERE commentNum=#{commentNum}
+  </update>
   
   <select id="getCount" parameterType="Pager" resultType="Long">
   

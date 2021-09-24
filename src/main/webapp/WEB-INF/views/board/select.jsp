@@ -50,7 +50,7 @@
 		
 			<div class="mb-3">
 				<label for="contents" class="form-label">Contents</label>
-				<textarea class="form-label" id="contents" name="contents"  cols="" rows="6" placeholder="Input some text."></textarea>
+				<textarea class="form-control" id="contents" name="contents"  cols="" rows="6" placeholder="Input some text."></textarea>
 			</div>
 		
 			<div align="left" class="mt-3">
@@ -78,12 +78,85 @@
 	<script type="text/javascript">
 	
 		getCommentList(1);
+		let content = '';
+		//update
+		$("#commentList").on("click", ".commentUpdate", function() {
+			console.log('update');
+			let num = $(this).attr("data-comment-update");
+			content= $("#content"+num).text().trim();
+			$("#content"+num).children().css('display','none');
+			let ta = '<textarea class="form-control" cols=""  name="contents" id="contents" rows="6">';
+			ta = ta+content.trim() +'</textarea>';
+			ta = ta + '<button type="button" id="" class="btn btn-primary update">update</button>';
+			ta = ta + '<button type="button" id="" class="btn btn-danger cancel">Cancel</button>';
+			 $("#content"+num).append(ta);
+			
+		});
+		
+		//update
+		$("#commentList").on('click', '.update', function() {
+			let contents = $(this).prev().val();
+			let cn = $(this).parent().prev().text().trim();
+			let selector=$(this);
+			$.ajax({
+				type : "POST",
+				url : "./commentUpdate",
+				data : {
+					commentNum:cn,
+					contents:contents
+				},
+				success : function(result) {
+					if(result.trim()>0){
+						alert('수정 성공');
+						selector.parent().children('div').text(contents);
+						selector.parent().children('div').css('display', 'block');
+						selector.parent().children('textarea').remove();
+						selector.parent().children('button').remove();
+					}else{
+						alert('수정 실패');
+					}
+				},
+				error: function() {
+					alert('수정 실패');
+				}
+			});
+		})
+		
+		//cancel
+		$("#commentList").on('click', ".cancel", function() {
+			console.log(content);
+			$(this).parent().children('div').css('display', 'block');
+			$(this).parent().children('textarea').remove();
+			$(this).parent().children('button').remove();
+		})
+		
 		
 		//Del click event
 		$("#commentList").on("click", ".commentDel", function() {
 			let commentNum = $(this).attr("data-comment-del");
 			console.log(commentNum);
-			//url ./commentDel
+			$.ajax({
+				type: "POST",
+				url : "./commentDel",
+				data : {
+					commentNum:commentNum
+				},
+				success: function(result) {
+					result = result.trim();
+					
+					if(result>0){
+						alert("삭제 성공");
+						getCommentList(1);
+					}else{
+						alert("삭제 실패");
+					}
+					
+				},
+				error: function() {
+					alert('삭제 실패');
+				}
+				
+			});
 		});
 		
 		$("#commentList").on("click", ".more", function() {
