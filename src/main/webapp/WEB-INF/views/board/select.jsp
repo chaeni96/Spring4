@@ -64,7 +64,7 @@
 		
 		<!-- 게시글 삭제 page 이동 -->
 		<c:if test="${not empty member and member.id eq dto.writer}">
-		<a href="./update?num=${dto.num}" class="btn btn-primary">Modify</a>
+		<a href="./update?num=${dto.num}" class="btn btn-primary">Update</a>
 		<a href="./delete?num=${dto.num}" class="btn btn-danger">Delete</a>
 		</c:if>
 		

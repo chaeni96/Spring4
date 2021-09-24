@@ -9,6 +9,14 @@
  	files = files+'</div>';
 
  let count = 0;
+ 
+ function setCount(c){
+	count = c;
+}
+
+function updateCount(){
+	count--;
+}
  	
  /*let index = 0;*/
  $('#fileAdd').click(function(){
@@ -30,7 +38,7 @@ $("#fileAddResult").on('click', '.del' , function(){
 	/*let num = $(this).attr('data-btn-id');
 	$("#del"+num).remove();	*/
 	
-	$(this),parent().remove();
+	$(this).parent().remove();
 	count--;
 });
 

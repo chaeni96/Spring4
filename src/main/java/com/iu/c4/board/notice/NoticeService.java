@@ -125,5 +125,17 @@ public class NoticeService implements BoardService {
 	public int setCommentUpdate (CommentsDTO commentsDTO) throws Exception{
 		return noticeDAO.setCommentUpdate(commentsDTO);
 	}
-
+	
+	public int setFileDelete(BoardFilesDTO boardFilesDTO) throws Exception{
+		//폴더에서 파일 삭제
+		String realPath = servletContext.getRealPath("/resources/upload/notice/");
+		
+		File file = new File(realPath, boardFilesDTO.getFileName());
+		fileManager.fileDelete(file);
+		
+		
+		
+		return noticeDAO.setFileDelete(boardFilesDTO);
+	}
+	
 }

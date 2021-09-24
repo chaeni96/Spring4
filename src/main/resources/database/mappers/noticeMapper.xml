@@ -115,6 +115,10 @@
   		
   	</insert>
   	
+  	<delete id="setFileDelete" parameterType="BoardFilesDTO">
+  		DELETE noticeFiles WHERE fileNum = #{fileNum}
+  	</delete>
+  	
   	
   	<delete id="setDelete" parameterType="BoardDTO">
   		DELETE NOTICE WHERE NUM= #{num}
@@ -127,6 +131,9 @@
   	 <update id="setUpdate" parameterType="BoardDTO" >
   		UPDATE NOTICE SET TITLE=#{title}, CONTENTS=#{contents}, WRITER=#{writer} WHERE NUM=#{num}
   	</update>
+  	
+  	
+  	
   
   </mapper>
   

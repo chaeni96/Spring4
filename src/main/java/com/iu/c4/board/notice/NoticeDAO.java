@@ -77,6 +77,10 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.selectList(NAMESPACE+"getFiles", boardDTO);
 	}
 	
+	public int setFileDelete(BoardFilesDTO boardFilesDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setFileDelete", boardFilesDTO);
+	}
+	
 	//BoardDAO에 선언하고 오버라이딩 하기
 	public int setComment(CommentsDTO commentsDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setComment", commentsDTO);
